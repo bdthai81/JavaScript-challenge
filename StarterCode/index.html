@@ -30,14 +30,40 @@
         <div class="col-md-2">
           <aside class="filters">
             <div class="panel panel-default">
-              <div class="panel-heading">Filter Search</div>
+              <div class="panel-heading">
+                  <button id="reset-btn" type="submit" class="btn-default" alt="Reset Filter">Filter Search</button>
+              </div>
               <div class="panel-body">
                 <form>
                   <div class="form-group">
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
                         <label for="date">Enter a Date</label>
-                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
+                        <input class="form-control" id="datetime" type="text" value="1/1/2010">
+                      </li>
+                      <li>
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelectCity">City</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelectCity">
+                          <option selected>All</option>
+                        </select>
+                      </li>
+                      <li>
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelectState">State</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelectState">
+                          <option selected>All</option>
+                        </select>
+                      </li>
+                      <li>
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelectShape">Shape</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelectShape">
+                          <option selected>All</option>
+                        </select>
                       </li>
                     </ul>
                   </div>
