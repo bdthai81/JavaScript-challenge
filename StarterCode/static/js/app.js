@@ -7,7 +7,7 @@ var inputDate = d3.select("#datetime");
 var selectCity = d3.select("#inputGroupSelectCity");
 var selectState = d3.select("#inputGroupSelectState");
 var selectShape = d3.select("#inputGroupSelectShape");
-// Create ES6 set of distinct cities, states, shapes
+// Create ES6 set of distinct cities, states, shapes for selection boxes
 const distinctCities = [...new Set(fullTableData.map(x => x.city))].sort();
 const distinctStates = [...new Set(fullTableData.map(x => x.state))].sort();
 const distinctShapes = [...new Set(fullTableData.map(x => x.shape))].sort();
@@ -20,13 +20,9 @@ function loadTableData(tableData) {
     tableData.forEach((rowData) => {
         // Create a table row
         var trData = d3.select("tbody").append("tr");
-        // Get the entries for each object in the array
-        Object.entries(rowData).forEach(([key, value]) => {
-            // Create table data
-            trData.append("td").text(`${value}`);
-        });
+        // Get the entries for each object in the array and create table data
+        Object.values(rowData).forEach(value => trData.append("td").text(`${value}`));
     });
-    console.log(`Table data length: ${tableData.length}`);
 };
 
 // Create a custom filtering function
@@ -53,10 +49,9 @@ filterButton.on("click", function() {
     // Prevent the page from refreshing
     d3.event.preventDefault();
 
-    // filter() uses the custom function as its argument
-    var filterTableData = fullTableData;
-    filterTableData = filterTableData.filter(selectFilter);    
-    
+    // filter table selections
+    var filterTableData = fullTableData.filter(selectFilter);  
+      
     // Reload Table Data
     loadTableData(filterTableData);
 });
@@ -69,8 +64,7 @@ resetButton.on("click", function() {
     inputDate.property("value", "1/1/2010");
     // Reset all select boxes to default All
     var elements = document.getElementsByTagName('select');
-    for (var i = 0; i < elements.length; i++)
-    {
+    for (var i = 0; i < elements.length; i++) {
         elements[i].selectedIndex = 0;
     };
 });
